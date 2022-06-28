@@ -1,13 +1,9 @@
 import * as THREE from 'three'
-import { PointLightHelper } from 'three'
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { AdaptiveToneMappingPass } from 'three/examples/jsm/postprocessing/AdaptiveToneMappingPass';
 import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass';
-import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass';
 
 
 const canvas = document.querySelector('#bg')
@@ -47,18 +43,18 @@ loader.load('/room/room.gltf',(gltf)=>{
 
 
 // Lights
-const pl1 = new THREE.PointLight(0xfff2d9,0.3)
+const pl1 = new THREE.PointLight(0xfff2d9,0.8)
 pl1.target = box
 pl1.position.set(0,1.8,4)
 scene.add(pl1)
 
-const pl2 = new THREE.PointLight(0xfff2d9,0.3)
+const pl2 = new THREE.PointLight(0xfff2d9,0.8)
 pl2.target = box
 pl2.position.set(0,1.8,-5)
 scene.add(pl2)
 
 
-const pl3 = new THREE.PointLight(0xfff2d9,2)
+const pl3 = new THREE.PointLight(0xfff2d9,0.8)
 pl3.target = box
 pl3.position.set(2,.9,-11)
 //scene.add(pl3)
@@ -113,14 +109,14 @@ const composer = new EffectComposer( renderer );
 const renderPass = new RenderPass( scene, camera );
 composer.addPass( renderPass );
 
-const imagePass = new UnrealBloomPass();
-composer.addPass( imagePass );
+// const imagePass = new UnrealBloomPass();
+// composer.addPass( imagePass );
 
 const image2Pass = new AdaptiveToneMappingPass();
 composer.addPass( image2Pass );
 
-const image4Pass = new AfterimagePass(0.001);
-composer.addPass( image4Pass );
+// const image4Pass = new AfterimagePass(0.001);
+// composer.addPass( image4Pass );
 
 const image3Pass = new GlitchPass(0);
 composer.addPass( image3Pass );
