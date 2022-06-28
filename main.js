@@ -12,6 +12,7 @@ import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass
 
 const canvas = document.querySelector('#bg')
 const audio = document.getElementById('audio')
+audio.muted = true
 audio.volume = 0.2
 audio.play()
 const { width , height } = canvas.getBoundingClientRect()
